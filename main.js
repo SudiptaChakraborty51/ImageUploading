@@ -66,5 +66,6 @@ button.addEventListener('click', () => {
     }else{
         alert("Images are uploaded successfully!");
         container.style.display="none";
+        location.reload();
     }
 })
