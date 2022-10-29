@@ -14,7 +14,6 @@ input.addEventListener('change', () => {
     for(let i=0; i<file.length; i++){
         if(files.every(e => e.name !== file[i].name)) files.push(file[i]);
     }
-
     form.reset();
     showImages();
 })
@@ -22,10 +21,11 @@ input.addEventListener('change', () => {
 const showImages = () => {
     let images = '';
     files.forEach( (e, i) => {
-        images += `<div class="image">
+        images += `<div class="show-container"><div class="image">
                 <img src="${URL.createObjectURL(e)}" alt="image">
                 <span onclick="delImage(${i})">&times;</span>
-            </div>`
+            </div>
+            <textarea type="text" class="comment" placeholder="Comment here"></textarea></div>`
     })
     container.innerHTML = images;
  }
@@ -34,7 +34,7 @@ const delImage = (index) => {
     files.splice(index, 1);
     showImages();
  }
- 
+
 form.addEventListener('dragover', e => {
     e.preventDefault();
 	from.classList.add('dragover');
@@ -65,5 +65,6 @@ button.addEventListener('click', () => {
         alert("Give some images!");
     }else{
         alert("Images are uploaded successfully!");
+        container.style.display="none";
     }
 })
